@@ -844,16 +844,14 @@ axios
           }
         },
         changeLanguage(lang) {
-          var http = new XMLHttpRequest();
-          http.open('HEAD', `https://wikidatawalkabout.org/languages/${lang}.json`, false);
-          http.send();
-          if (http.status === 404) {
-            alert('Sorry, language not supported yet.  Reverting to English');
-            lang = "en";
+          try {
+            let fileName = require(`../languages/${lang}.json`);
+            urlParams.set("lang", lang);
+            this.updatePage(this.page);
+            location.reload();
+          } catch (e) {
+            alert("Sorry, language not supported yet, reverting to English");
           }
-          urlParams.set("lang", lang);
-          this.updatePage(this.page);
-          location.reload();
         },
       },
       computed: {
