@@ -845,7 +845,7 @@ axios
         },
         changeLanguage(lang) {
           try {
-            let fileName = require(`languages/${lang}.json`);
+            let jsonFile = `languages/${lang}.json`;
             urlParams.set("lang", lang);
             this.updatePage(this.page);
             location.reload();
