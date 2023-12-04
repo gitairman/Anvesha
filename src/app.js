@@ -844,14 +844,9 @@ axios
           }
         },
         changeLanguage(lang) {
-          try {
-            let jsonFile = `languages/${lang}.json`;
-            urlParams.set("lang", lang);
-            this.updatePage(this.page);
-            location.reload();
-          } catch (e) {
-            alert("Sorry, language not supported yet, reverting to English");
-          }
+          urlParams.set("lang", lang);
+          this.updatePage(this.page);
+          location.reload();
         },
       },
       computed: {
