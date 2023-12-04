@@ -844,6 +844,9 @@ axios
           }
         },
         changeLanguage(lang) {
+          if (!fs.existsSync(`../languages/${lang}.json`)) {
+            lang = "en";
+          }
           urlParams.set("lang", lang);
           this.updatePage(this.page);
           location.reload();
