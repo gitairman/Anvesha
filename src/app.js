@@ -844,7 +844,11 @@ axios
           }
         },
         changeLanguage(lang) {
-          if (!fs.existsSync(`../languages/${lang}.json`)) {
+          var http = new XMLHttpRequest();
+          http.open('HEAD', `https://wikidatawalkabout.org/languages/${lang}.json`, false);
+          http.send();
+          if (http.status === 404) {
+            alert('Sorry, language not supported yet.  Reverting to English');
             lang = "en";
           }
           urlParams.set("lang", lang);
